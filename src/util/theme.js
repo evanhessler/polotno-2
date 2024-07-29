@@ -1,158 +1,83 @@
 import React from "react";
 import {
-  useTheme,
   createTheme,
   ThemeProvider as MuiThemeProvider,
-} from "@material-ui/core/styles";
-import * as colors from "@material-ui/core/colors";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { createLocalStorageStateHook } from "use-local-storage-state";
+} from "@mui/material/styles";
+import * as colors from "@mui/material/colors";
+import CssBaseline from "@mui/material/CssBaseline";
 
-const themeConfig = {
-  // Light theme
-  light: {
-    palette: {
-      type: "light",
-      primary: {
-        // Use hue from colors or hex
-        main: colors.indigo["500"],
-        // Uncomment to specify light/dark
-        // shades instead of automatically
-        // calculating from above value.
-        //light: "#4791db",
-        //dark: "#115293",
-      },
-      secondary: {
-        main: colors.pink["500"],
-      },
-      background: {
-        // Background for <body>
-        // and <Section color="default">
-        default: "#fff",
-        // Background for elevated
-        // components (<Card>, etc)
-        paper: "#fff",
-      },
+const theme = createTheme({
+  palette: {
+    type: "dark", // Always dark mode
+    primary: {
+      main: colors.indigo["500"],
+    },
+    secondary: {
+      main: "#8861e8",
+    },
+    background: {
+      default: colors.grey["900"],
+      paper: colors.grey["800"],
+    },
+    text: {
+      primary: "#c1bbc9",
+      secondary: "rgba(255, 255, 255, 0.7)",
     },
   },
-
-  // Dark theme
-  dark: {
-    palette: {
-      type: "dark",
-      primary: {
-        // Same as in light but we could
-        // adjust color hue if needed
-        main: colors.indigo["500"],
-      },
-      secondary: {
-        main: colors.pink["500"],
-      },
-      background: {
-        default: colors.grey["900"],
-        paper: colors.grey["800"],
-      },
+  typography: {
+    h1: {
+      fontFamily: '"PuviBold", "Roboto", "Helvetica", "Arial", sans-serif',
+      fontWeight: "bold",
+      textTransform: "uppercase",
+      fontSize: "clamp(3.75rem, 5vw, 0.8rem)",
+      color: "#fff",
     },
-  },
-
-  // Values for both themes
-  common: {
-    typography: {
-      fontSize: 14,
+    h6: {
       fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      // Uncomment to make button lowercase
-      // button: { textTransform: "none" },
+      fontWeight: 100,
+      textTransform: "uppercase",
+      fontSize: "clamp(0.75rem, 5vw, 1.2rem)", // Responsive font size based on viewport width
+      color: "#c1bbc9",
     },
-    breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 960,
-        lg: 1200,
-        xl: 1920,
+    fontSize: 18,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  },
+  overrides: {
+    MuiAccordion: {
+      root: {
+        backgroundColor: "#362a52", // Custom color for accordion
       },
     },
-    // Override component styles
-    overrides: {
-      // Global styles
-      MuiCssBaseline: {
-        "@global": {
-          "#root": {
-            // Flex column that is height
-            // of viewport so that footer
-            // can push self to bottom by
-            // with auto margin-top
-            minHeight: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            // Prevent child elements from
-            // shrinking when content
-            // is taller than the screen
-            // (quirk of flex parent)
-            "& > *": {
-              flexShrink: 0,
-            },
+    MuiCard: {
+      root: {
+        backgroundColor: "#362a52", // Custom color for card
+      },
+    },
+    MuiCard: {
+      root: {
+        backgroundColor: "#362a52", // Custom color for card
+      },
+    },
+    MuiCssBaseline: {
+      "@global": {
+        "#root": {
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          "& > *": {
+            flexShrink: 0,
           },
         },
       },
     },
   },
-};
+});
 
-function getTheme(name) {
-  // Create MUI theme from themeConfig
-  return createTheme({
-    ...themeConfig[name],
-    // Merge in common values
-    ...themeConfig.common,
-    overrides: {
-      // Merge overrides
-      ...(themeConfig[name] && themeConfig[name].overrides),
-      ...(themeConfig.common && themeConfig.common.overrides),
-    },
-  });
-}
-
-// Create a local storage hook for dark mode preference
-const useDarkModeStorage = createLocalStorageStateHook("isDarkMode");
-
-export const ThemeProvider = (props) => {
-  // Get system dark mode preference
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)", {
-    noSsr: true,
-  });
-
-  // Get stored dark mode preference
-  let [isDarkModeStored, setIsDarkModeStored] = useDarkModeStorage();
-
-  // Use stored dark mode with fallback to system preference
-  const isDarkMode =
-    isDarkModeStored === undefined ? prefersDarkMode : isDarkModeStored;
-
-  // Get MUI theme object
-  const themeName = isDarkMode ? "dark" : "light";
-  const theme = getTheme(themeName);
-
-  // Add toggle function to theme object
-  theme.palette.toggle = () => setIsDarkModeStored((value) => !value);
-
+export const ThemeProvider = ({ children }) => {
   return (
     <MuiThemeProvider theme={theme}>
-      {/* Set global MUI styles */}
       <CssBaseline />
-      {props.children}
+      {children}
     </MuiThemeProvider>
   );
 };
-
-// Hook for detecting dark mode and toggling between light/dark
-// More convenient than reading theme.palette.type from useTheme
-export function useDarkMode() {
-  // Get current Material UI theme
-  const theme = useTheme();
-  // Check if it's the dark theme
-  const isDarkMode = theme.palette.type === "dark";
-  // Return object containing dark mode value and toggle function
-  return { value: isDarkMode, toggle: theme.palette.toggle };
-}
