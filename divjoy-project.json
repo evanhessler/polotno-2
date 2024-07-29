@@ -116,7 +116,7 @@
       "name": "Button",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Button",
+        "modulePath": "@mui/material/Button",
         "default": "Button"
       },
       "id": 9259061,
@@ -132,7 +132,7 @@
       "name": "Box",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Box",
+        "modulePath": "@mui/material/Box",
         "default": "Box"
       },
       "id": 2803465,
@@ -148,7 +148,7 @@
       "name": "Container",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Container",
+        "modulePath": "@mui/material/Container",
         "default": "Container"
       },
       "id": 6094171,
@@ -727,10 +727,7 @@
           "isVisible": true
         }
       ],
-      "tags": [
-        "Navigation",
-        "not:landing"
-      ],
+      "tags": ["Navigation", "not:landing"],
       "description": "Navbar with sign in and dark mode",
       "isVisible": true,
       "nameLibrary": "",
@@ -742,7 +739,7 @@
       "name": "AppBar",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/AppBar",
+        "modulePath": "@mui/material/AppBar",
         "default": "AppBar"
       },
       "id": 6924602,
@@ -758,7 +755,7 @@
       "name": "Toolbar",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Toolbar",
+        "modulePath": "@mui/material/Toolbar",
         "default": "Toolbar"
       },
       "id": 5455913,
@@ -774,7 +771,7 @@
       "name": "IconButton",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/IconButton",
+        "modulePath": "@mui/material/IconButton",
         "default": "IconButton"
       },
       "id": 6001480,
@@ -790,7 +787,7 @@
       "name": "MenuIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/icons/Menu",
+        "modulePath": "@mui/icons-material/Menu",
         "default": "MenuIcon"
       },
       "id": 7903337,
@@ -806,7 +803,7 @@
       "name": "ExpandMoreIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/icons/ExpandMore",
+        "modulePath": "@mui/icons-material/ExpandMore",
         "default": "ExpandMoreIcon"
       },
       "id": 4737227,
@@ -822,7 +819,7 @@
       "name": "Menu",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Menu",
+        "modulePath": "@mui/material/Menu",
         "default": "Menu"
       },
       "id": 3298414,
@@ -838,7 +835,7 @@
       "name": "MenuItem",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/MenuItem",
+        "modulePath": "@mui/material/MenuItem",
         "default": "MenuItem"
       },
       "id": 5585816,
@@ -854,7 +851,7 @@
       "name": "Drawer",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Drawer",
+        "modulePath": "@mui/material/Drawer",
         "default": "Drawer"
       },
       "id": 1225687,
@@ -870,7 +867,7 @@
       "name": "List",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/List",
+        "modulePath": "@mui/material/List",
         "default": "List"
       },
       "id": 494811,
@@ -886,7 +883,7 @@
       "name": "ListItem",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/ListItem",
+        "modulePath": "@mui/material/ListItem",
         "default": "ListItem"
       },
       "id": 174532,
@@ -902,7 +899,7 @@
       "name": "ListItemText",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/ListItemText",
+        "modulePath": "@mui/material/ListItemText",
         "default": "ListItemText"
       },
       "id": 6869634,
@@ -918,7 +915,7 @@
       "name": "Hidden",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Hidden",
+        "modulePath": "@mui/material/Hidden",
         "default": "Hidden"
       },
       "id": 3614119,
@@ -934,7 +931,7 @@
       "name": "Divider",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Divider",
+        "modulePath": "@mui/material/Divider",
         "default": "Divider"
       },
       "id": 672936,
@@ -950,7 +947,7 @@
       "name": "NightsStayIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/icons/NightsStay",
+        "modulePath": "@mui/icons-material/NightsStay",
         "default": "NightsStayIcon"
       },
       "id": 7218909,
@@ -966,7 +963,7 @@
       "name": "WbSunnyIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/icons/WbSunny",
+        "modulePath": "@mui/icons-material/WbSunny",
         "default": "WbSunnyIcon"
       },
       "id": 5205416,
@@ -1042,7 +1039,7 @@
       "name": "Typography",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Typography",
+        "modulePath": "@mui/material/Typography",
         "default": "Typography"
       },
       "id": 4385644,
@@ -1183,10 +1180,7 @@
         }
       ],
       "id": 2945315,
-      "tags": [
-        "Hero",
-        "Popular"
-      ],
+      "tags": ["Hero", "Popular"],
       "description": "Hero with button",
       "isVisible": true,
       "nameLibrary": "",
@@ -1200,7 +1194,7 @@
       "name": "Grid",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Grid",
+        "modulePath": "@mui/material/Grid",
         "default": "Grid"
       },
       "id": 6105710,
@@ -1364,10 +1358,7 @@
           "isVisible": true
         }
       ],
-      "tags": [
-        "Features",
-        "Popular"
-      ],
+      "tags": ["Features", "Popular"],
       "description": "Features in two-column grid",
       "isVisible": true,
       "nameLibrary": "",
@@ -1379,7 +1370,7 @@
       "name": "Card",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Card",
+        "modulePath": "@mui/material/Card",
         "default": "Card"
       },
       "id": 1224284,
@@ -1534,10 +1525,7 @@
           "isVisible": true
         }
       ],
-      "tags": [
-        "Clients",
-        "Popular"
-      ],
+      "tags": ["Clients", "Popular"],
       "description": "Clients with logos",
       "isVisible": true,
       "nameLibrary": "",
@@ -1550,7 +1538,7 @@
       "name": "CardContent",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/CardContent",
+        "modulePath": "@mui/material/CardContent",
         "default": "CardContent"
       },
       "id": 5527943,
@@ -1671,10 +1659,7 @@
         }
       ],
       "id": 3126526,
-      "tags": [
-        "Testimonials",
-        "Popular"
-      ],
+      "tags": ["Testimonials", "Popular"],
       "description": "Testimonials with avatar",
       "isVisible": true,
       "nameLibrary": "",
@@ -1686,7 +1671,7 @@
       "name": "CardHeader",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/CardHeader",
+        "modulePath": "@mui/material/CardHeader",
         "default": "CardHeader"
       },
       "id": 4943244,
@@ -1767,11 +1752,7 @@
         }
       ],
       "id": 1070482,
-      "tags": [
-        "Newsletter",
-        "Popular",
-        "Form"
-      ],
+      "tags": ["Newsletter", "Popular", "Form"],
       "description": "Newsletter with form on right",
       "isVisible": true,
       "nameLibrary": "",
@@ -1914,7 +1895,7 @@
       "name": "TextField",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/TextField",
+        "modulePath": "@mui/material/TextField",
         "default": "TextField"
       },
       "id": 522426,
@@ -2003,9 +1984,7 @@
         }
       ],
       "id": 6240407,
-      "tags": [
-        "Call to Action"
-      ],
+      "tags": ["Call to Action"],
       "muiStyle": "{\n  // Increase <Container> padding so it's\n  // at least half of <Grid> spacing to \n  // avoid horizontal scroll on mobile.\n  // See https://material-ui.com/components/grid/#negative-margin\n  container: {\n    padding: `0 ${theme.spacing(3)}px`,\n    textAlign: \"center\",\n  },\n}",
       "description": "Call to action with button on right",
       "isVisible": true,
@@ -2019,7 +1998,7 @@
       "name": "ListItemIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/ListItemIcon",
+        "modulePath": "@mui/material/ListItemIcon",
         "default": "ListItemIcon"
       },
       "id": 6103809,
@@ -2623,10 +2602,7 @@
         }
       ],
       "id": 4268572,
-      "tags": [
-        "Footer",
-        "Popular"
-      ],
+      "tags": ["Footer", "Popular"],
       "code": "\tconst darkMode = useDarkMode();\n  // Use inverted logo if specified \n\t// and we are in dark mode\n  const logo = props.logoInverted && darkMode.value \n  \t\t\t\t\t\t\t? props.logoInverted \n  \t\t\t\t\t\t\t: props.logo;\n",
       "description": "Footer with multiple columns",
       "isVisible": true,
@@ -2720,10 +2696,7 @@
         }
       ],
       "id": 3610364,
-      "tags": [
-        "Hero",
-        "Content"
-      ],
+      "tags": ["Hero", "Content"],
       "description": "Simple hero",
       "isVisible": true,
       "nameLibrary": "",
@@ -2830,10 +2803,7 @@
         }
       ],
       "id": 4659848,
-      "tags": [
-        "Stats",
-        "Popular"
-      ],
+      "tags": ["Stats", "Popular"],
       "description": "Stats row with numbers",
       "isVisible": true,
       "nameLibrary": "",
@@ -2846,7 +2816,7 @@
       "name": "Avatar",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Avatar",
+        "modulePath": "@mui/material/Avatar",
         "default": "Avatar"
       },
       "id": 2071245,
@@ -3029,10 +2999,7 @@
         }
       ],
       "id": 6445610,
-      "tags": [
-        "Team",
-        "Popular"
-      ],
+      "tags": ["Team", "Popular"],
       "description": "Team bios with avatar",
       "isVisible": true,
       "nameLibrary": "",
@@ -3044,7 +3011,7 @@
       "name": "Typography",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Typography",
+        "modulePath": "@mui/material/Typography",
         "default": "Typography"
       },
       "id": 8016225,
@@ -3060,7 +3027,7 @@
       "name": "Typography",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Typography",
+        "modulePath": "@mui/material/Typography",
         "default": "Typography"
       },
       "id": 2416516,
@@ -3206,10 +3173,7 @@
       "muiStyle": "{\n  accordion: {\n    // Remove shadow\n    boxShadow: \"none\",\n    \"&:before\": {\n      // Remove default divider\n      display: \"none\",\n    },\n    // Add a custom border\n    \"&:not(:last-child)\": {\n      borderBottom: `1px solid ${theme.palette.divider}`,\n    },\n  },\n  expanded: {\n    margin: `0 !important`,\n  },\n  summary: {\n    minHeight: 78,\n  },\n  summaryContent: {\n    margin: \"0 !important\",\n  },\n}",
       "code": "  const items = [\n    {\n      question: \"Integer ornare neque mauris?\",\n      answer:\n        \"Integer ornare neque mauris, ac vulputate lacus venenatis et. Pellentesque ut ultrices purus. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.\",\n    },\n    {\n      question: \"Lorem ipsum dolor sit amet?\",\n      answer:\n        \"Nunc nulla mauris, laoreet vel cursus lacinia, consectetur sit amet tellus. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.\",\n    },\n    {\n      question: \"Suspendisse ut tincidunt?\",\n      answer:\n        \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lobortis, metus et mattis ullamcorper. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.\",\n    },\n    {\n      question: \"Ut enim ad minim veniam?\",\n      answer:\n        \"Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.\",\n    },\n    {\n      question: \"In velit mi, rhoncus dictum neque?\",\n      answer:\n        \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.\",\n    },\n  ];\n",
       "id": 8401615,
-      "tags": [
-        "FAQ",
-        "Popular"
-      ],
+      "tags": ["FAQ", "Popular"],
       "description": "FAQ with expandable items",
       "isVisible": true,
       "nameLibrary": "",
@@ -3221,7 +3185,7 @@
       "name": "Accordion",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Accordion",
+        "modulePath": "@mui/material/Accordion",
         "default": "Accordion"
       },
       "id": 9647720,
@@ -3237,7 +3201,7 @@
       "name": "AccordionSummary",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/AccordionSummary",
+        "modulePath": "@mui/material/AccordionSummary",
         "default": "AccordionSummary"
       },
       "id": 7981399,
@@ -3253,7 +3217,7 @@
       "name": "AccordionDetails",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/AccordionDetails",
+        "modulePath": "@mui/material/AccordionDetails",
         "default": "AccordionDetails"
       },
       "id": 7896305,
@@ -3571,11 +3535,7 @@
         }
       ],
       "id": 9272542,
-      "tags": [
-        "Pricing",
-        "Popular",
-        "not:landing"
-      ],
+      "tags": ["Pricing", "Popular", "not:landing"],
       "description": "Pricing with 3 plans and feature list",
       "isVisible": true,
       "nameLibrary": "",
@@ -3587,7 +3547,7 @@
       "name": "CheckIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/icons/Check",
+        "modulePath": "@mui/icons-material/Check",
         "default": "CheckIcon"
       },
       "id": 1950264,
@@ -3623,7 +3583,7 @@
       "name": "Alert",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/lab/Alert",
+        "modulePath": "@mui/lab/Alert",
         "default": "Alert"
       },
       "id": 8658588,
@@ -3675,11 +3635,7 @@
         }
       ],
       "id": 4954952,
-      "tags": [
-        "Contact",
-        "Popular",
-        "Form"
-      ],
+      "tags": ["Contact", "Popular", "Form"],
       "description": "Contact form",
       "isVisible": true,
       "nameLibrary": "",
@@ -3894,7 +3850,7 @@
       "name": "CircularProgress",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/CircularProgress",
+        "modulePath": "@mui/material/CircularProgress",
         "default": "CircularProgress"
       },
       "id": 5186596,
@@ -3930,7 +3886,7 @@
       "name": "Link",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Link",
+        "modulePath": "@mui/material/Link",
         "default": "LinkMui"
       },
       "id": 2366338,
@@ -3998,10 +3954,7 @@
       "name": "AuthSection",
       "code": "\t// Options by auth type\n  const optionsByType = {\n    signup: {\n      // Top Title\n      title: \"Get yourself an account\",\n      // Button text\n      buttonAction: \"Sign up\",\n      // Footer text and links\n      showFooter: true,\n      signinText: \"Already have an account?\",\n      signinAction: \"Sign in\",\n      signinPath: \"/auth/signin\",\n      // Terms and privacy policy agreement\n      showAgreement: true,\n      termsPath: \"/legal/terms-of-service\",\n      privacyPolicyPath: \"/legal/privacy-policy\",\n    },\n    signin: {\n      title: \"Welcome back\",\n      buttonAction: \"Sign in\",\n      showFooter: true,\n      signupAction: \"Create an account\",\n      signupPath: \"/auth/signup\",\n      forgotPassAction: \"Forgot Password?\",\n      forgotPassPath: \"/auth/forgotpass\",\n    },\n    forgotpass: {\n      title: \"Get a new password\",\n      buttonAction: \"Reset password\",\n      showFooter: true,\n      signinText: \"Remember it after all?\",\n      signinAction: \"Sign in\",\n      signinPath: \"/auth/signin\",\n    },\n    changepass: {\n      title: \"Choose a new password\",\n      buttonAction: \"Change password\",\n    },\n  };\n\n  // Ensure we have a valid auth type\n  const type = optionsByType[props.type] \n  \t? props.type \n  \t: \"signup\";\n\n  // Get options object for current auth type\n  const options = optionsByType[type];\n",
       "id": 1755206,
-      "tags": [
-        "Authentication",
-        "Form"
-      ],
+      "tags": ["Authentication", "Form"],
       "description": "Sign up form with social options",
       "isVisible": true,
       "nameLibrary": "",
@@ -4706,7 +4659,7 @@
       "name": "Dialog",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Dialog",
+        "modulePath": "@mui/material/Dialog",
         "default": "Dialog"
       },
       "id": 3269201,
@@ -4722,7 +4675,7 @@
       "name": "DialogTitle",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/DialogTitle",
+        "modulePath": "@mui/material/DialogTitle",
         "default": "DialogTitle"
       },
       "id": 2272263,
@@ -4738,7 +4691,7 @@
       "name": "DialogContent",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/DialogContent",
+        "modulePath": "@mui/material/DialogContent",
         "default": "DialogContent"
       },
       "id": 8029889,
@@ -4754,7 +4707,7 @@
       "name": "Paper",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Paper",
+        "modulePath": "@mui/material/Paper",
         "default": "Paper"
       },
       "id": 3202961,
@@ -5581,7 +5534,7 @@
       "name": "ListItemSecondaryAction",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/ListItemSecondaryAction",
+        "modulePath": "@mui/material/ListItemSecondaryAction",
         "default": "ListItemSecondaryAction"
       },
       "id": 8223350,
@@ -5597,7 +5550,7 @@
       "name": "StarIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/icons/Star",
+        "modulePath": "@mui/icons-material/Star",
         "default": "StarIcon"
       },
       "id": 6615516,
@@ -5613,7 +5566,7 @@
       "name": "EditIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/icons/Edit",
+        "modulePath": "@mui/icons-material/Edit",
         "default": "EditIcon"
       },
       "id": 2444813,
@@ -5629,7 +5582,7 @@
       "name": "DeleteIcon",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/icons/Delete",
+        "modulePath": "@mui/icons-material/Delete",
         "default": "DeleteIcon"
       },
       "id": 8995245,
@@ -6613,7 +6566,7 @@
       "name": "Tabs",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Tabs",
+        "modulePath": "@mui/material/Tabs",
         "default": "Tabs"
       },
       "id": 8493321,
@@ -6629,7 +6582,7 @@
       "name": "Tab",
       "module": {
         "moduleName": "material-ui",
-        "modulePath": "@material-ui/core/Tab",
+        "modulePath": "@mui/material/Tab",
         "default": "Tab"
       },
       "id": 1556241,
@@ -6828,9 +6781,7 @@
       "name": "LegalSection",
       "code": "  const validSections = {\n    \"terms-of-service\": true,\n    \"privacy-policy\": true,\n  };\n\n  const section = validSections[props.section] \n  \t? props.section \n  \t: \"terms-of-service\";\n\n\tconst data = {\n    domain: \"company.com\",\n    companyName: \"Company\",\n  }\n",
       "id": 3536208,
-      "tags": [
-        "Content"
-      ],
+      "tags": ["Content"],
       "description": "Terms of Service",
       "isVisible": true,
       "nameLibrary": "",

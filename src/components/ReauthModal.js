@@ -1,32 +1,32 @@
 import React, { useState } from "react";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import Box from "@material-ui/core/Box";
-import Alert from "@material-ui/lab/Alert";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useForm } from "react-hook-form";
-import { makeStyles } from "@material-ui/core/styles";
+import { styled } from "@mui/material/styles";
 import AuthSocial from "./AuthSocial";
 import { useAuth } from "./../util/auth";
 
-const useStyles = makeStyles((theme) => ({
-  content: {
-    paddingBottom: 24,
-  },
+const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
+  paddingBottom: theme.spacing(3),
 }));
 
 function ReauthModal(props) {
-  const classes = useStyles();
-
   const auth = useAuth();
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
 
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data) => {
     const { pass } = data;
@@ -54,7 +54,7 @@ function ReauthModal(props) {
   return (
     <Dialog open={true} onClose={props.onDone}>
       <DialogTitle>Please sign in again to complete this action</DialogTitle>
-      <DialogContent className={classes.content}>
+      <DialogContentStyled>
         {formAlert && (
           <Box mb={4}>
             <Alert severity={formAlert.type}>{formAlert.message}</Alert>
@@ -63,32 +63,32 @@ function ReauthModal(props) {
 
         {props.provider === "password" && (
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Grid container={true} spacing={2}>
-              <Grid item={true} xs={12}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
                 <TextField
                   variant="outlined"
                   type="password"
                   label="Password"
                   name="pass"
-                  error={errors.pass ? true : false}
-                  helperText={errors.pass && errors.pass.message}
-                  fullWidth={true}
-                  autoFocus={true}
+                  error={!!errors.pass}
+                  helperText={errors.pass?.message}
+                  fullWidth
+                  autoFocus
                   inputRef={register({
                     required: "Please enter your password",
                   })}
                 />
               </Grid>
-              <Grid item={true} xs={12}>
+              <Grid item xs={12}>
                 <Button
                   variant="contained"
                   color="primary"
                   size="large"
                   type="submit"
                   disabled={pending}
-                  fullWidth={true}
+                  fullWidth
                 >
-                  {!pending && <span>Submit</span>}
+                  {!pending && "Submit"}
 
                   {pending && <CircularProgress size={28} />}
                 </Button>
@@ -115,7 +115,7 @@ function ReauthModal(props) {
             }}
           />
         )}
-      </DialogContent>
+      </DialogContentStyled>
     </Dialog>
   );
 }

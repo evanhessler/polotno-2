@@ -1,34 +1,32 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Box from "@material-ui/core/Box";
-import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 import Section from "./Section";
 import SectionHeader from "./SectionHeader";
 
-const useStyles = makeStyles((theme) => ({
-  card: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-  },
-  avatarWrapper: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  avatar: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-  },
+const CardStyled = styled(Card)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  height: "100%",
+}));
+
+const AvatarWrapper = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+}));
+
+const AvatarStyled = styled(Avatar)(({ theme }) => ({
+  width: theme.spacing(15),
+  height: theme.spacing(15),
 }));
 
 function TeamBiosSection(props) {
-  const classes = useStyles();
-
   const items = [
     {
       avatar: "https://uploads.divjoy.com/pravatar-150x-68.jpeg",
@@ -64,18 +62,14 @@ function TeamBiosSection(props) {
           size={4}
           textAlign="center"
         />
-        <Grid container={true} justifyContent="center" spacing={4}>
+        <Grid container justifyContent="center" spacing={4}>
           {items.map((item, index) => (
-            <Grid item={true} xs={12} sm={6} md={4} key={index}>
-              <Card className={classes.card}>
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <CardStyled>
                 <CardContent>
-                  <Box className={classes.avatarWrapper}>
-                    <Avatar
-                      src={item.avatar}
-                      alt={item.name}
-                      className={classes.avatar}
-                    />
-                  </Box>
+                  <AvatarWrapper>
+                    <AvatarStyled src={item.avatar} alt={item.name} />
+                  </AvatarWrapper>
                   <Box textAlign="center" pt={3}>
                     <Typography variant="body2" component="p">
                       {item.name}
@@ -94,7 +88,7 @@ function TeamBiosSection(props) {
                     </Box>
                   </Box>
                 </CardContent>
-              </Card>
+              </CardStyled>
             </Grid>
           ))}
         </Grid>

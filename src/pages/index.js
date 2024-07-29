@@ -46,18 +46,6 @@ function IndexPage(props) {
         title="Here's what people are saying"
         subtitle=""
       />
-      <NewsletterSection
-        bgColor="light"
-        size="medium"
-        bgImage=""
-        bgImageOpacity={1}
-        title="Stay in the know"
-        subtitle="Receive our latest articles and feature updates"
-        buttonText="Subscribe"
-        buttonColor="primary"
-        inputPlaceholder="Enter your email"
-        subscribedMessage="You are now subscribed!"
-      />
       <CtaSection
         bgColor="primary"
         size="medium"

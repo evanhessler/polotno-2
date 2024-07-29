@@ -1,51 +1,51 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import CheckIcon from "@material-ui/icons/Check";
-import ListItemText from "@material-ui/core/ListItemText";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import CheckIcon from "@mui/icons-material/Check";
+import ListItemText from "@mui/material/ListItemText";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 import Section from "./Section";
 import SectionHeader from "./SectionHeader";
 import { Link } from "./../util/router";
 import { useAuth } from "./../util/auth";
 
-const useStyles = makeStyles((theme) => ({
-  card: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-  },
-  cardContent: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    padding: theme.spacing(3),
-  },
-  price: {
-    display: "flex",
-    alignItems: "baseline",
-  },
-  listItem: {
-    paddingTop: 2,
-    paddingBottom: 2,
-  },
-  perkIcon: {
-    minWidth: 34,
-    color: theme.palette.success.main,
-  },
+const CardStyled = styled(Card)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  height: "100%",
+}));
+
+const CardContentStyled = styled(CardContent)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  height: "100%",
+  padding: theme.spacing(3),
+}));
+
+const Price = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "baseline",
+}));
+
+const ListItemStyled = styled(ListItem)(({ theme }) => ({
+  paddingTop: 2,
+  paddingBottom: 2,
+}));
+
+const PerkIcon = styled(ListItemIcon)(({ theme }) => ({
+  minWidth: 34,
+  color: theme.palette.success.main,
 }));
 
 function PricingSection(props) {
-  const classes = useStyles();
-
   const auth = useAuth();
 
   const plans = [
@@ -101,20 +101,20 @@ function PricingSection(props) {
           size={4}
           textAlign="center"
         />
-        <Grid container={true} justifyContent="center" spacing={4}>
+        <Grid container justifyContent="center" spacing={4}>
           {plans.map((plan, index) => (
-            <Grid item={true} xs={12} md={4} key={index}>
-              <Card className={classes.card}>
-                <CardContent className={classes.cardContent}>
+            <Grid item xs={12} md={4} key={index}>
+              <CardStyled>
+                <CardContentStyled>
                   <Typography variant="h6" component="h2">
                     {plan.name}
                   </Typography>
-                  <Box className={classes.price} mt={1}>
+                  <Price mt={1}>
                     <Typography variant="h3">${plan.price}</Typography>
                     <Typography variant="h4" color="textSecondary">
                       /mo
                     </Typography>
-                  </Box>
+                  </Price>
 
                   {plan.description && (
                     <Box mt={2}>
@@ -128,16 +128,12 @@ function PricingSection(props) {
                     <Box mt={1}>
                       <List aria-label="perks">
                         {plan.perks.map((perk, index) => (
-                          <ListItem
-                            className={classes.listItem}
-                            disableGutters={true}
-                            key={index}
-                          >
-                            <ListItemIcon className={classes.perkIcon}>
+                          <ListItemStyled disableGutters key={index}>
+                            <PerkIcon>
                               <CheckIcon />
-                            </ListItemIcon>
+                            </PerkIcon>
                             <ListItemText>{perk}</ListItemText>
-                          </ListItem>
+                          </ListItemStyled>
                         ))}
                       </List>
                     </Box>
@@ -154,13 +150,13 @@ function PricingSection(props) {
                       variant="contained"
                       color="primary"
                       size="large"
-                      fullWidth={true}
+                      fullWidth
                     >
                       Choose
                     </Button>
                   </Box>
-                </CardContent>
-              </Card>
+                </CardContentStyled>
+              </CardStyled>
             </Grid>
           ))}
         </Grid>

@@ -1,39 +1,32 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { styled } from "@mui/system";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "relative",
-    width: "100%",
-    height: 0,
-  },
-  inner: {
-    // Fill parent aspect ratio
-    position: "absolute",
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    // Center contents
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  },
+// Styled components
+const Root = styled("div")(({ theme, ratio }) => ({
+  position: "relative",
+  width: "100%",
+  height: 0,
+  paddingBottom: `${(1 / ratio) * 100}%`, // Move dynamic style calculation here
 }));
 
-function AspectRatio(props) {
-  const classes = useStyles();
+const Inner = styled("div")({
+  position: "absolute",
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  overflow: "hidden",
+});
 
+function AspectRatio(props) {
+  // Directly use styled components in render
   return (
-    <div
-      className={classes.root}
-      style={{
-        paddingBottom: (1 / props.ratio) * 100 + "%",
-      }}
-    >
-      <div className={classes.inner}>{props.children}</div>
-    </div>
+    <Root ratio={props.ratio}>
+      <Inner>{props.children}</Inner>
+    </Root>
   );
 }
 

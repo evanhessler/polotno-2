@@ -1,57 +1,49 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
-import { emphasize } from "@material-ui/core/styles/colorManipulator";
-import capitalize from "@material-ui/core/utils/capitalize";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import { emphasize } from "@mui/material/styles";
+import capitalize from "@mui/material/utils/capitalize";
 import BackgroundImage from "./BackgroundImage";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "relative",
-    // Ensure child <Container> is above background
-    // image (if one is set with the bgImage prop).
-    "& > .MuiContainer-root": {
-      position: "relative",
+const getBackgroundStyles = (theme, bgColor) => {
+  const colors = {
+    default: theme.palette.background.default,
+    light: emphasize(theme.palette.background.default, 0.03),
+    primary: theme.palette.primary.main,
+    secondary: theme.palette.secondary.main,
+  };
+
+  const value = colors[bgColor] || colors.default;
+
+  return {
+    backgroundColor: value,
+    color: theme.palette.getContrastText(value),
+    "& + &": {
+      borderTop: `1px solid ${emphasize(value, 0.09)}`,
     },
-  },
+  };
+};
 
-  // Create color classes that set background color and determine
-  // text color and dividing border automatically based on background color.
-  // Adds the keys colorDefault, colorLight, etc
-  ...[
-    ["default", theme.palette.background.default],
-    ["light", emphasize(theme.palette.background.default, 0.03)],
-    ["primary", theme.palette.primary.main],
-    ["secondary", theme.palette.secondary.main],
-  ].reduce((acc, [name, value]) => {
-    acc[`color${capitalize(name)}`] = {
-      backgroundColor: value,
-      // Ensure text is legible on background
-      color: theme.palette.getContrastText(value),
-      // Sibling selector that adds a top border if section above
-      // has the same color class.
-      // We use emphasize to compute border based on background color
-      // and make sure it's always lightly visible.
-      [`& + &`]: {
-        borderTop: `1px solid ${emphasize(value, 0.09)}`,
-      },
-    };
-    return acc;
-  }, {}),
-
-  colorInherit: {
-    color: "inherit",
-  },
-
-  colorTransparent: {
-    backgroundColor: "transparent",
-    color: "inherit",
+const SectionStyled = styled(Box)(({ theme, bgColor, bgImageOpacity }) => ({
+  position: "relative",
+  padding: theme.spacing(
+    {
+      normal: 6,
+      medium: 10,
+      large: 20,
+      auto: 0,
+    }[theme.breakpoints.up()]
+  ),
+  ...(bgImageOpacity
+    ? { backgroundImage: `url(${bgImageOpacity})`, backgroundSize: "cover" }
+    : {}),
+  ...(bgColor ? getBackgroundStyles(theme, capitalize(bgColor)) : {}),
+  "& > .MuiContainer-root": {
+    position: "relative",
   },
 }));
 
 function Section(props) {
-  const classes = useStyles();
-
   const {
     bgColor = "default",
     bgImage,
@@ -62,30 +54,17 @@ function Section(props) {
     ...otherProps
   } = props;
 
-  // Get MUI responsize size object based
-  // on size prop (normal, medium, large, auto)
-  const verticalPadding = {
-    normal: { xs: 6 },
-    medium: { xs: 6, sm: 10 },
-    large: { xs: 6, sm: 20 },
-    auto: 0,
-  }[size];
-
   return (
-    <Box
+    <SectionStyled
       component="section"
-      py={verticalPadding}
-      className={
-        classes.root +
-        ` ${classes[`color${capitalize(bgColor)}`]}` +
-        (className ? ` ${className}` : "")
-      }
+      bgColor={bgColor}
+      bgImageOpacity={bgImageOpacity}
+      className={className}
       {...otherProps}
     >
       {bgImage && <BackgroundImage image={bgImage} opacity={bgImageOpacity} />}
-
-      {props.children}
-    </Box>
+      {children}
+    </SectionStyled>
   );
 }
 

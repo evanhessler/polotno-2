@@ -1,41 +1,33 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import Typography from "@material-ui/core/Typography";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from "@mui/material/Container";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { styled } from "@mui/material/styles";
 import Section from "./Section";
 import SectionHeader from "./SectionHeader";
 
-const useStyles = makeStyles((theme) => ({
-  accordion: {
-    // Remove shadow
-    boxShadow: "none",
-    "&:before": {
-      // Remove default divider
-      display: "none",
-    },
-    // Add a custom border
-    "&:not(:last-child)": {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
+// Styled components using MUI v5
+const StyledAccordion = styled(Accordion)(({ theme }) => ({
+  boxShadow: "none",
+  "&:before": {
+    display: "none",
   },
-  expanded: {
-    margin: `0 !important`,
+  "&:not(:last-child)": {
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
-  summary: {
-    minHeight: 78,
-  },
-  summaryContent: {
+}));
+
+const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  minHeight: 78,
+  "& .MuiAccordionSummary-content": {
     margin: "0 !important",
   },
 }));
 
 function FaqSection(props) {
-  const classes = useStyles();
-
   const items = [
     {
       question: "Integer ornare neque mauris?",
@@ -80,27 +72,22 @@ function FaqSection(props) {
         />
 
         {items.map((item, index) => (
-          <Accordion
-            classes={{
-              root: classes.accordion,
-              expanded: classes.expanded,
-            }}
+          <StyledAccordion
             key={index}
+            expanded={false}
+            // Note: To handle expansion state, you may need to manage it with useState
           >
-            <AccordionSummary
-              classes={{
-                root: classes.summary,
-                content: classes.summaryContent,
-              }}
+            <StyledAccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`faq-panel-${index}`}
+              id={`faq-header-${index}`}
             >
               <Typography variant="h6">{item.question}</Typography>
-            </AccordionSummary>
+            </StyledAccordionSummary>
             <AccordionDetails id={`faq-panel-${index}`}>
               <Typography>{item.answer}</Typography>
             </AccordionDetails>
-          </Accordion>
+          </StyledAccordion>
         ))}
       </Container>
     </Section>

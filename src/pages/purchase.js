@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Alert from "@material-ui/lab/Alert";
+import Alert from "@mui/lab/Alert";
 import Meta from "./../components/Meta";
 import PageLoader from "./../components/PageLoader";
 import { useAuth, requireAuth } from "./../util/auth";

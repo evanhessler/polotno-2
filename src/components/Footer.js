@@ -1,71 +1,70 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import LinkMui from "@material-ui/core/Link";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import LinkMui from "@mui/material/Link";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import { styled } from "@mui/material/styles";
 import Section from "./Section";
 import { Link } from "./../util/router";
-import { useDarkMode } from "./../util/theme";
 
-const useStyles = makeStyles((theme) => ({
-  sticky: {
+// Styled components using MUI v5
+const StickySection = styled(Section)(({ theme, sticky }) => ({
+  ...(sticky && {
     marginTop: "auto",
-  },
-  brand: {
-    display: "block",
-    height: 32,
-  },
-  listItem: {
-    paddingTop: 2,
-    paddingBottom: 2,
-    paddingLeft: 12,
-    paddingRight: 12,
-  },
-  listItemTextHeader: {
-    fontWeight: "bold",
-  },
-  socialIcon: {
-    minWidth: 30,
-  },
-  legal: {
-    marginTop: theme.spacing(3),
-    fontSize: "0.875rem",
-    opacity: 0.6,
-    "& a": {
-      color: "inherit",
-      marginLeft: "0.8rem",
-    },
+  }),
+}));
+
+const Brand = styled("img")({
+  display: "block",
+  height: 32,
+});
+
+const ListItemStyled = styled(ListItem)(({ theme }) => ({
+  paddingTop: 2,
+  paddingBottom: 2,
+  paddingLeft: 12,
+  paddingRight: 12,
+}));
+
+const ListItemTextHeader = styled(Typography)({
+  fontWeight: "bold",
+});
+
+const SocialIcon = styled(ListItemIcon)({
+  minWidth: 30,
+});
+
+const Legal = styled("div")(({ theme }) => ({
+  marginTop: theme.spacing(3),
+  fontSize: "0.875rem",
+  opacity: 0.6,
+  "& a": {
+    color: "inherit",
+    marginLeft: "0.8rem",
   },
 }));
 
 function Footer(props) {
-  const classes = useStyles();
-
-  const darkMode = useDarkMode();
-  // Use inverted logo if specified
-  // and we are in dark mode
-  const logo =
-    props.logoInverted && darkMode.value ? props.logoInverted : props.logo;
+  const logo = props.logo;
 
   return (
-    <Section
+    <StickySection
       bgColor={props.bgColor}
       size={props.size}
       bgImage={props.bgImage}
       bgImageOpacity={props.bgImageOpacity}
-      className={props.sticky && classes.sticky}
+      sticky={props.sticky}
     >
       <Container>
-        <Grid container={true} justifyContent="space-between" spacing={4}>
-          <Grid item={true} xs={12} md={4}>
+        <Grid container justifyContent="space-between" spacing={4}>
+          <Grid item xs={12} md={4}>
             <Link to="/">
-              <img src={logo} alt="Logo" className={classes.brand} />
+              <Brand src={logo} alt="Logo" />
             </Link>
 
             {props.description && (
@@ -74,7 +73,7 @@ function Footer(props) {
               </Box>
             )}
 
-            <div className={classes.legal}>
+            <Legal>
               {props.copyright}
               <LinkMui component={Link} to="/legal/terms-of-service">
                 Terms
@@ -82,141 +81,108 @@ function Footer(props) {
               <LinkMui component={Link} to="/legal/privacy-policy">
                 Privacy
               </LinkMui>
-            </div>
+            </Legal>
           </Grid>
-          <Grid item={true} xs={12} md={6}>
-            <Grid container={true} spacing={4}>
-              <Grid item={true} xs={12} md={4}>
-                <List disablePadding={true}>
-                  <ListItem className={classes.listItem}>
-                    <Typography
-                      variant="overline"
-                      className={classes.listItemTextHeader}
-                    >
+          <Grid item xs={12} md={6}>
+            <Grid container spacing={4}>
+              <Grid item xs={12} md={4}>
+                <List disablePadding>
+                  <ListItemStyled>
+                    <ListItemTextHeader variant="overline">
                       Product
-                    </Typography>
-                  </ListItem>
-                  <ListItem
-                    component={Link}
-                    to="/pricing"
-                    button={true}
-                    className={classes.listItem}
-                  >
+                    </ListItemTextHeader>
+                  </ListItemStyled>
+                  <ListItemStyled component={Link} to="/pricing" button>
                     <ListItemText>Pricing</ListItemText>
-                  </ListItem>
-                  <ListItem
-                    component={Link}
-                    to="/faq"
-                    button={true}
-                    className={classes.listItem}
-                  >
+                  </ListItemStyled>
+                  <ListItemStyled component={Link} to="/faq" button>
                     <ListItemText>FAQ</ListItemText>
-                  </ListItem>
+                  </ListItemStyled>
                 </List>
               </Grid>
-              <Grid item={true} xs={12} md={4}>
-                <List disablePadding={true}>
-                  <ListItem className={classes.listItem}>
-                    <Typography
-                      variant="overline"
-                      className={classes.listItemTextHeader}
-                    >
+              <Grid item xs={12} md={4}>
+                <List disablePadding>
+                  <ListItemStyled>
+                    <ListItemTextHeader variant="overline">
                       Company
-                    </Typography>
-                  </ListItem>
-                  <ListItem
-                    component={Link}
-                    to="/about"
-                    button={true}
-                    className={classes.listItem}
-                  >
+                    </ListItemTextHeader>
+                  </ListItemStyled>
+                  <ListItemStyled component={Link} to="/about" button>
                     <ListItemText>About</ListItemText>
-                  </ListItem>
-                  <ListItem
-                    component={Link}
-                    to="/contact"
-                    button={true}
-                    className={classes.listItem}
-                  >
+                  </ListItemStyled>
+                  <ListItemStyled component={Link} to="/contact" button>
                     <ListItemText>Contact</ListItemText>
-                  </ListItem>
-                  <ListItem
-                    button={true}
+                  </ListItemStyled>
+                  <ListItemStyled
+                    button
                     component="a"
                     href="https://medium.com"
                     target="_blank"
                     rel="noreferrer"
-                    className={classes.listItem}
                   >
                     <ListItemText>Blog</ListItemText>
-                  </ListItem>
+                  </ListItemStyled>
                 </List>
               </Grid>
-              <Grid item={true} xs={12} md={4}>
-                <List disablePadding={true}>
-                  <ListItem className={classes.listItem}>
-                    <Typography
-                      variant="overline"
-                      className={classes.listItemTextHeader}
-                    >
+              <Grid item xs={12} md={4}>
+                <List disablePadding>
+                  <ListItemStyled>
+                    <ListItemTextHeader variant="overline">
                       Social
-                    </Typography>
-                  </ListItem>
-                  <ListItem
-                    button={true}
+                    </ListItemTextHeader>
+                  </ListItemStyled>
+                  <ListItemStyled
+                    button
                     component="a"
                     href="https://twitter.com/divjoy"
                     target="_blank"
                     rel="noreferrer"
-                    className={classes.listItem}
                   >
-                    <ListItemIcon className={classes.socialIcon}>
+                    <SocialIcon>
                       <img
                         src="https://uploads.divjoy.com/icon-twitter.svg"
-                        alt="Facebook"
+                        alt="Twitter"
                       />
-                    </ListItemIcon>
+                    </SocialIcon>
                     <ListItemText>Twitter</ListItemText>
-                  </ListItem>
-                  <ListItem
-                    button={true}
+                  </ListItemStyled>
+                  <ListItemStyled
+                    button
                     component="a"
                     href="https://facebook.com/DivjoyOfficial"
                     target="_blank"
                     rel="noreferrer"
-                    className={classes.listItem}
                   >
-                    <ListItemIcon className={classes.socialIcon}>
+                    <SocialIcon>
                       <img
                         src="https://uploads.divjoy.com/icon-facebook.svg"
                         alt="Facebook"
                       />
-                    </ListItemIcon>
+                    </SocialIcon>
                     <ListItemText>Facebook</ListItemText>
-                  </ListItem>
-                  <ListItem
-                    button={true}
+                  </ListItemStyled>
+                  <ListItemStyled
+                    button
                     component="a"
                     href="https://instagram.com"
                     target="_blank"
                     rel="noreferrer"
-                    className={classes.listItem}
                   >
-                    <ListItemIcon className={classes.socialIcon}>
+                    <SocialIcon>
                       <img
                         src="https://uploads.divjoy.com/icon-instagram.svg"
-                        alt="Facebook"
+                        alt="Instagram"
                       />
-                    </ListItemIcon>
+                    </SocialIcon>
                     <ListItemText>Instagram</ListItemText>
-                  </ListItem>
+                  </ListItemStyled>
                 </List>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Container>
-    </Section>
+    </StickySection>
   );
 }
 

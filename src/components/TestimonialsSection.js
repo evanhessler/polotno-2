@@ -1,28 +1,25 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import CardHeader from "@material-ui/core/CardHeader";
-import Avatar from "@material-ui/core/Avatar";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import CardHeader from "@mui/material/CardHeader";
+import Avatar from "@mui/material/Avatar";
+import { styled } from "@mui/material/styles";
 import Section from "./Section";
 import SectionHeader from "./SectionHeader";
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    paddingTop: 0,
-  },
-  avatar: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-  },
+const CardHeaderStyled = styled(CardHeader)(({ theme }) => ({
+  paddingTop: 0,
+}));
+
+const AvatarStyled = styled(Avatar)(({ theme }) => ({
+  width: theme.spacing(7),
+  height: theme.spacing(7),
 }));
 
 function TestimonialsSection(props) {
-  const classes = useStyles();
-
   const items = [
     {
       avatar: "https://uploads.divjoy.com/pravatar-150x-5.jpeg",
@@ -61,24 +58,17 @@ function TestimonialsSection(props) {
           size={4}
           textAlign="center"
         />
-        <Grid container={true} justifyContent="center" spacing={4}>
+        <Grid container justifyContent="center" spacing={4}>
           {items.map((item, index) => (
-            <Grid item={true} xs={12} sm={4} key={index}>
+            <Grid item xs={12} sm={4} key={index}>
               <Card>
                 <CardContent>
                   <Typography variant="body1" component="p">
                     "{item.testimonial}"
                   </Typography>
                 </CardContent>
-                <CardHeader
-                  className={classes.header}
-                  avatar={
-                    <Avatar
-                      src={item.avatar}
-                      alt={item.name}
-                      className={classes.avatar}
-                    />
-                  }
+                <CardHeaderStyled
+                  avatar={<AvatarStyled src={item.avatar} alt={item.name} />}
                   title={item.name}
                   subheader={item.company}
                 />

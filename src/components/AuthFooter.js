@@ -1,32 +1,31 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
-import LinkMui from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import LinkMui from "@mui/material/Link";
+import { styled } from "@mui/material/styles";
 import { Link } from "./../util/router";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    fontSize: "0.9rem",
-    textAlign: "center",
-    marginTop: theme.spacing(3),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-  },
-  spacerSmall: {
-    display: "inline-block",
-    width: theme.spacing(1),
-  },
-  spacerMedium: {
-    display: "inline-block",
-    width: theme.spacing(2),
-  },
+// Styled components using MUI v5
+const Root = styled("div")(({ theme }) => ({
+  fontSize: "0.9rem",
+  textAlign: "center",
+  marginTop: theme.spacing(3),
+  paddingLeft: theme.spacing(2),
+  paddingRight: theme.spacing(2),
+}));
+
+const SpacerSmall = styled("span")(({ theme }) => ({
+  display: "inline-block",
+  width: theme.spacing(1),
+}));
+
+const SpacerMedium = styled("span")(({ theme }) => ({
+  display: "inline-block",
+  width: theme.spacing(2),
 }));
 
 function AuthFooter(props) {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Root>
       {props.type === "signup" && (
         <>
           {props.showAgreement && (
@@ -44,7 +43,7 @@ function AuthFooter(props) {
           )}
 
           {props.signinText}
-          <span className={classes.spacerSmall} />
+          <SpacerSmall />
           <LinkMui component={Link} to={props.signinPath}>
             {props.signinAction}
           </LinkMui>
@@ -59,7 +58,7 @@ function AuthFooter(props) {
 
           {props.forgotPassAction && (
             <>
-              <span className={classes.spacerMedium} />
+              <SpacerMedium />
               <LinkMui component={Link} to={props.forgotPassPath}>
                 {props.forgotPassAction}
               </LinkMui>
@@ -71,13 +70,13 @@ function AuthFooter(props) {
       {props.type === "forgotpass" && (
         <>
           {props.signinText}
-          <span className={classes.spacerSmall} />
+          <SpacerSmall />
           <LinkMui component={Link} to={props.signinPath}>
             {props.signinAction}
           </LinkMui>
         </>
       )}
-    </div>
+    </Root>
   );
 }
 

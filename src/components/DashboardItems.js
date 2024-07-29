@@ -1,40 +1,38 @@
 import React, { useState } from "react";
-import Box from "@material-ui/core/Box";
-import Alert from "@material-ui/lab/Alert";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import IconButton from "@material-ui/core/IconButton";
-import StarIcon from "@material-ui/icons/Star";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import CircularProgress from "@mui/material/CircularProgress";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+import IconButton from "@mui/material/IconButton";
+import StarIcon from "@mui/icons-material/Star";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { styled } from "@mui/material/styles";
 import EditItemModal from "./EditItemModal";
 import { useAuth } from "./../util/auth";
 import { updateItem, deleteItem, useItemsByOwner } from "./../util/db";
 
-const useStyles = makeStyles((theme) => ({
-  paperItems: {
-    minHeight: "300px",
-  },
-  featured: {
-    backgroundColor:
-      theme.palette.type === "dark" ? theme.palette.action.selected : "#fdf8c2",
-  },
-  starFeatured: {
-    color: theme.palette.warning.main,
-  },
+// Styled components using MUI v5
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  minHeight: "300px",
+}));
+
+const FeaturedItem = styled(ListItem)(({ theme }) => ({
+  backgroundColor: "#fdf8c2",
+}));
+
+const StarFeatured = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.warning.main,
 }));
 
 function DashboardItems(props) {
-  const classes = useStyles();
-
   const auth = useAuth();
 
   const {
@@ -44,7 +42,6 @@ function DashboardItems(props) {
   } = useItemsByOwner(auth.user.uid);
 
   const [creatingItem, setCreatingItem] = useState(false);
-
   const [updatingItemId, setUpdatingItemId] = useState(null);
 
   const itemsAreEmpty = !items || items.length === 0;
@@ -69,7 +66,7 @@ function DashboardItems(props) {
         </Box>
       )}
 
-      <Paper className={classes.paperItems}>
+      <StyledPaper>
         <Box
           display="flex"
           justifyContent="space-between"
@@ -89,7 +86,7 @@ function DashboardItems(props) {
         <Divider />
 
         {(itemsStatus === "loading" || itemsAreEmpty) && (
-          <Box py={5} px={3} align="center">
+          <Box py={5} px={3} textAlign="center">
             {itemsStatus === "loading" && <CircularProgress size={32} />}
 
             {itemsStatus !== "loading" && itemsAreEmpty && (
@@ -99,23 +96,23 @@ function DashboardItems(props) {
         )}
 
         {itemsStatus !== "loading" && items && items.length > 0 && (
-          <List disablePadding={true}>
+          <List disablePadding>
             {items.map((item, index) => (
-              <ListItem
+              <FeaturedItem
                 key={index}
                 divider={index !== items.length - 1}
-                className={item.featured ? classes.featured : ""}
+                className={item.featured ? "featured" : ""}
               >
                 <ListItemText>{item.name}</ListItemText>
                 <ListItemSecondaryAction>
-                  <IconButton
+                  <StarFeatured
                     edge="end"
                     aria-label="star"
                     onClick={() => handleStarItem(item)}
-                    className={item.featured ? classes.starFeatured : ""}
+                    className={item.featured ? "starFeatured" : ""}
                   >
                     <StarIcon />
-                  </IconButton>
+                  </StarFeatured>
                   <IconButton
                     edge="end"
                     aria-label="update"
@@ -131,11 +128,11 @@ function DashboardItems(props) {
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
-              </ListItem>
+              </FeaturedItem>
             ))}
           </List>
         )}
-      </Paper>
+      </StyledPaper>
 
       {creatingItem && <EditItemModal onDone={() => setCreatingItem(false)} />}
 

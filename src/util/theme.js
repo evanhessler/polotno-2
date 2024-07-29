@@ -6,22 +6,26 @@ import {
 import * as colors from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
 
+// Define your theme
 const theme = createTheme({
   palette: {
-    type: "dark", // Always dark mode
+    mode: "light",
     primary: {
-      main: colors.indigo["500"],
+      main: colors.indigo[500],
     },
     secondary: {
       main: "#8861e8",
     },
     background: {
-      default: colors.grey["900"],
-      paper: colors.grey["800"],
+      default: colors.grey[100],
+      paper: colors.grey[50],
+    },
+    default: {
+      main: colors.indigo[500],
     },
     text: {
-      primary: "#c1bbc9",
-      secondary: "rgba(255, 255, 255, 0.7)",
+      primary: "#000",
+      secondary: "rgba(0, 0, 0, 0.7)",
     },
   },
   typography: {
@@ -30,42 +34,43 @@ const theme = createTheme({
       fontWeight: "bold",
       textTransform: "uppercase",
       fontSize: "clamp(3.75rem, 5vw, 0.8rem)",
-      color: "#fff",
+      color: "#000",
     },
     h6: {
       fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
       fontWeight: 100,
       textTransform: "uppercase",
-      fontSize: "clamp(0.75rem, 5vw, 1.2rem)", // Responsive font size based on viewport width
-      color: "#c1bbc9",
+      fontSize: "clamp(0.75rem, 5vw, 1.2rem)",
+      color: "#000",
     },
     fontSize: 18,
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   },
-  overrides: {
+  components: {
     MuiAccordion: {
-      root: {
-        backgroundColor: "#362a52", // Custom color for accordion
+      styleOverrides: {
+        root: {
+          backgroundColor: "#f5f5f5",
+        },
       },
     },
     MuiCard: {
-      root: {
-        backgroundColor: "#362a52", // Custom color for card
-      },
-    },
-    MuiCard: {
-      root: {
-        backgroundColor: "#362a52", // Custom color for card
+      styleOverrides: {
+        root: {
+          backgroundColor: "#f5f5f5",
+        },
       },
     },
     MuiCssBaseline: {
-      "@global": {
-        "#root": {
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          "& > *": {
-            flexShrink: 0,
+      styleOverrides: {
+        "@global": {
+          "#root": {
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            "& > *": {
+              flexShrink: 0,
+            },
           },
         },
       },
