@@ -1,64 +1,15 @@
-import React from "react";
-import Meta from "./../components/Meta";
-import HeroSection from "./../components/HeroSection";
-import FeaturesSection from "./../components/FeaturesSection";
-import ClientsSection from "./../components/ClientsSection";
-import TestimonialsSection from "./../components/TestimonialsSection";
-import NewsletterSection from "./../components/NewsletterSection";
-import CtaSection from "./../components/CtaSection";
+import Editor from "../components/Editor";
 
-function IndexPage(props) {
+export default function IndexPage() {
   return (
-    <>
-      <Meta />
-      <HeroSection
-        bgColor="primary"
-        size="large"
-        bgImage="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=1600&h=800&q=80"
-        bgImageOpacity={0.3}
-        title="Your landing page title here"
-        subtitle="This landing page is perfect for showing off your awesome product and driving people to sign up for a paid plan."
-        buttonText="Get Started"
-        buttonColor="default"
-        buttonPath="/pricing"
-      />
-      <FeaturesSection
-        bgColor="default"
-        size="medium"
-        bgImage=""
-        bgImageOpacity={1}
-        title="Features"
-        subtitle="All the features you need to move faster"
-      />
-      <ClientsSection
-        bgColor="light"
-        size="medium"
-        bgImage=""
-        bgImageOpacity={1}
-        title="You're in good company"
-        subtitle=""
-      />
-      <TestimonialsSection
-        bgColor="default"
-        size="medium"
-        bgImage=""
-        bgImageOpacity={1}
-        title="Here's what people are saying"
-        subtitle=""
-      />
-      <CtaSection
-        bgColor="primary"
-        size="medium"
-        bgImage=""
-        bgImageOpacity={1}
-        title="Ready to get started?"
-        subtitle=""
-        buttonText="Get Started"
-        buttonColor="default"
-        buttonPath="/pricing"
-      />
-    </>
+    <div>
+      <Editor />
+      <style jsx global>{`
+        body {
+          padding: 0;
+          margin: 0;
+        }
+      `}</style>
+    </div>
   );
 }
-
-export default IndexPage;

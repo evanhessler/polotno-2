@@ -15,6 +15,7 @@ import NotFoundPage from "./404";
 import Footer from "./../components/Footer";
 import { ThemeProvider } from "./../util/theme";
 import { QueryClientProvider } from "./../util/db";
+// import "./main.css";
 
 function App(props) {
   return (

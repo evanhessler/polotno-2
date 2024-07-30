@@ -1,0 +1,13 @@
+.custom-button:hover {
+  background-color: rgba(143, 153, 168, 0.15) !important;
+}
+
+.custom-button {
+  background-color: #fff !important;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Adjust the gap size as needed */
+  margin-bottom: 20px; /* Provides space below the button group */
+}
