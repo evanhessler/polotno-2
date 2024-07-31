@@ -16,47 +16,52 @@ import DesignPage from "./design";
 import Footer from "./../components/Footer";
 import { ThemeProvider } from "./../util/theme";
 import { QueryClientProvider } from "./../util/db";
-// import "./main.css";
+import { AuthProvider } from "./../util/auth";
 
 function App(props) {
   return (
     <QueryClientProvider>
       <ThemeProvider>
-        <Router>
-          <>
-            <Navbar
-              color="default"
-              logo="https://uploads.divjoy.com/logo.svg"
-              logoInverted="https://uploads.divjoy.com/logo-white.svg"
-            />
+        <AuthProvider>
+          <Router>
+            <>
+              <Navbar
+                color="default"
+                logo="https://uploads.divjoy.com/logo.svg"
+                logoInverted="https://uploads.divjoy.com/logo-white.svg"
+              />
 
-            <Switch>
-              <Route exact path="/" component={IndexPage} />
+              <Switch>
+                <Route exact path="/" component={IndexPage} />
 
-              <Route exact path="/about" component={AboutPage} />
+                <Route exact path="/about" component={AboutPage} />
 
-              <Route exact path="/design" component={DesignPage} />
+                <Route exact path="/design" component={DesignPage} />
 
-              <Route exact path="/faq" component={FaqPage} />
+                <Route exact path="/faq" component={FaqPage} />
 
-              <Route exact path="/contact" component={ContactPage} />
+                <Route exact path="/contact" component={ContactPage} />
 
-              <Route exact path="/pricing" component={PricingPage} />
+                <Route exact path="/pricing" component={PricingPage} />
 
-              <Route exact path="/dashboard" component={DashboardPage} />
+                <Route exact path="/dashboard" component={DashboardPage} />
 
-              <Route exact path="/auth/:type" component={AuthPage} />
+                <Route exact path="/auth/:type" component={AuthPage} />
 
-              <Route exact path="/settings/:section" component={SettingsPage} />
+                <Route
+                  exact
+                  path="/settings/:section"
+                  component={SettingsPage}
+                />
 
-              <Route exact path="/legal/:section" component={LegalPage} />
+                <Route exact path="/legal/:section" component={LegalPage} />
 
-              <Route exact path="/purchase/:plan" component={PurchasePage} />
+                <Route exact path="/purchase/:plan" component={PurchasePage} />
 
-              <Route component={NotFoundPage} />
-            </Switch>
+                <Route component={NotFoundPage} />
+              </Switch>
 
-            {/* <Footer
+              {/* <Footer
               bgColor="default"
               size="medium"
               bgImage=""
@@ -67,8 +72,9 @@ function App(props) {
               logoInverted="https://uploads.divjoy.com/logo-white.svg"
               sticky={true}
             /> */}
-          </>
-        </Router>
+            </>
+          </Router>
+        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

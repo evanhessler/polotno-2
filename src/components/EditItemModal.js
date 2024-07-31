@@ -80,13 +80,12 @@ function EditItemModal(props) {
                 variant="outlined"
                 type="text"
                 label="Name"
-                name="name"
-                defaultValue={itemData && itemData.name}
+                defaultValue={itemData ? itemData.name : ""}
                 error={Boolean(errors.name)}
                 helperText={errors.name && errors.name.message}
                 fullWidth
                 autoFocus
-                inputRef={register({
+                {...register("name", {
                   required: "Please enter a name",
                 })}
               />

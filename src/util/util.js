@@ -1,17 +1,31 @@
 import { useRef, useEffect } from "react";
+import { getAuth, signOut } from "firebase/auth";
+import { firebaseApp } from "./firebase";
+
+const auth = getAuth(firebaseApp);
 
 // Make an API request to `/api/{path}`
-export function apiRequest(path, method = "GET", data) {
+export async function apiRequest(path, method = "GET", data) {
+  const accessToken = auth.currentUser
+    ? await auth.currentUser.getIdToken()
+    : undefined;
+
   return fetch(`/api/${path}`, {
     method: method,
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
     },
     body: data ? JSON.stringify(data) : undefined,
   })
     .then((response) => response.json())
     .then((response) => {
       if (response.status === "error") {
+        // Automatically signout user if accessToken is no longer valid
+        if (response.code === "auth/invalid-user-token") {
+          signOut(auth);
+        }
+
         throw new CustomError(response.code, response.message);
       } else {
         return response.data;
