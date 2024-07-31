@@ -60,6 +60,7 @@ function Navbar(props) {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            margin: 0,
           }}
         >
           <Toolbar sx={{ flex: 1 }}>
@@ -75,7 +76,7 @@ function Navbar(props) {
                 </IconButton>
               </Hidden>
               <Hidden xsDown>
-                <Box sx={{ mr: -4 }}>
+                <Box sx={{ mr: -9 }}>
                   <BlueprintButton
                     icon="floppy-disk"
                     intent="none"

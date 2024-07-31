@@ -9,7 +9,12 @@ import { useAuth } from "./../util/auth";
 function AuthForm(props) {
   const auth = useAuth();
   const [pending, setPending] = useState(false);
-  const { handleSubmit, register, errors, getValues } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    getValues,
+  } = useForm();
 
   const submitHandlersByType = {
     signin: ({ email, pass }) => {
@@ -67,53 +72,46 @@ function AuthForm(props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid container={true} spacing={2}>
+      <Grid container spacing={2}>
         {["signup", "signin", "forgotpass"].includes(props.type) && (
-          <Grid item={true} xs={12}>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               type="email"
               label="Email"
-              name="email"
               placeholder="user@example.com"
               error={errors.email ? true : false}
               helperText={errors.email && errors.email.message}
-              fullWidth={true}
-              inputRef={register({
-                required: "Please enter your email",
-              })}
+              fullWidth
+              {...register("email", { required: "Please enter your email" })}
             />
           </Grid>
         )}
 
         {["signup", "signin", "changepass"].includes(props.type) && (
-          <Grid item={true} xs={12}>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               type="password"
               label="Password"
-              name="pass"
               error={errors.pass ? true : false}
               helperText={errors.pass && errors.pass.message}
-              fullWidth={true}
-              inputRef={register({
-                required: "Please enter a password",
-              })}
+              fullWidth
+              {...register("pass", { required: "Please enter a password" })}
             />
           </Grid>
         )}
 
         {["signup", "changepass"].includes(props.type) && (
-          <Grid item={true} xs={12}>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               type="password"
               label="Confirm Password"
-              name="confirmPass"
               error={errors.confirmPass ? true : false}
               helperText={errors.confirmPass && errors.confirmPass.message}
-              fullWidth={true}
-              inputRef={register({
+              fullWidth
+              {...register("confirmPass", {
                 required: "Please enter your password again",
                 validate: (value) => {
                   if (value === getValues().pass) {
@@ -127,17 +125,16 @@ function AuthForm(props) {
           </Grid>
         )}
 
-        <Grid item={true} xs={12}>
+        <Grid item xs={12}>
           <Button
             variant="contained"
             color="primary"
             size="large"
             type="submit"
             disabled={pending}
-            fullWidth={true}
+            fullWidth
           >
             {!pending && <span>{props.buttonAction}</span>}
-
             {pending && <CircularProgress size={28} />}
           </Button>
         </Grid>

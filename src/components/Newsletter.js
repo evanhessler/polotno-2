@@ -9,7 +9,11 @@ import newsletter from "./../util/newsletter";
 function Newsletter(props) {
   const [subscribed, setSubscribed] = useState(false);
 
-  const { handleSubmit, register, errors } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = ({ email }) => {
     setSubscribed(true);
@@ -24,23 +28,22 @@ function Newsletter(props) {
     <>
       {subscribed === false && (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container={true} spacing={2}>
-            <Grid item={true} xs={true}>
+          <Grid container spacing={2}>
+            <Grid item xs>
               <TextField
                 variant="outlined"
                 type="email"
                 label="Email"
-                name="email"
-                error={errors.email ? true : false}
-                helperText={errors.email && errors.email.message}
-                fullWidth={true}
-                inputRef={register({
+                {...register("email", {
                   required: "Please enter an email address",
                 })}
+                error={errors.email ? true : false}
+                helperText={errors.email && errors.email.message}
+                fullWidth
               />
             </Grid>
-            <Box display="flex" alignItems="stretch" clone={true}>
-              <Grid item={true} xs="auto">
+            <Box display="flex" alignItems="stretch" clone>
+              <Grid item xs="auto">
                 <Button
                   variant="contained"
                   color={props.buttonColor}
