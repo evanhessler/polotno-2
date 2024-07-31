@@ -8,6 +8,10 @@
 
 .button-container {
   display: flex;
-  gap: 10px; /* Adjust the gap size as needed */
-  margin-bottom: 20px; /* Provides space below the button group */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.go1268125134 {
+  height: calc(100vh - 64px) !important;
 }

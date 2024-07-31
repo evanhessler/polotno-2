@@ -1,6 +1,9 @@
-export default function IndexPage() {
+import Editor from "../components/Editor";
+
+export default function DesignPage() {
   return (
     <div>
+      <Editor />
       <style jsx global>{`
         body {
           padding: 0;

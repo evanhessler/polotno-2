@@ -34,30 +34,7 @@ export const CustomToolbar = (props) => {
   };
 
   const ActionControls = () => (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <Button
-        icon="floppy-disk"
-        intent="none"
-        onClick={() => alert("Design Saved")}
-        style={{
-          marginLeft: "10px",
-          color: "#1C2127",
-          border: "none",
-          borderRadius: "3px",
-          boxShadow: "none",
-        }}
-        className="custom-button"
-      >
-        Save
-      </Button>
-      <Button
-        intent="primary"
-        onClick={() => alert("Design Approved")}
-        style={{ marginLeft: "10px" }}
-      >
-        Finalize Design
-      </Button>
-    </div>
+    <div style={{ display: "flex", alignItems: "center" }}></div>
   );
 
   return (

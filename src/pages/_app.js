@@ -12,6 +12,7 @@ import LegalPage from "./legal";
 import { Switch, Route, Router } from "./../util/router";
 import PurchasePage from "./purchase";
 import NotFoundPage from "./404";
+import DesignPage from "./design";
 import Footer from "./../components/Footer";
 import { ThemeProvider } from "./../util/theme";
 import { QueryClientProvider } from "./../util/db";
@@ -34,6 +35,8 @@ function App(props) {
 
               <Route exact path="/about" component={AboutPage} />
 
+              <Route exact path="/design" component={DesignPage} />
+
               <Route exact path="/faq" component={FaqPage} />
 
               <Route exact path="/contact" component={ContactPage} />
@@ -53,7 +56,7 @@ function App(props) {
               <Route component={NotFoundPage} />
             </Switch>
 
-            <Footer
+            {/* <Footer
               bgColor="default"
               size="medium"
               bgImage=""
@@ -63,7 +66,7 @@ function App(props) {
               logo="https://uploads.divjoy.com/logo.svg"
               logoInverted="https://uploads.divjoy.com/logo-white.svg"
               sticky={true}
-            />
+            /> */}
           </>
         </Router>
       </ThemeProvider>

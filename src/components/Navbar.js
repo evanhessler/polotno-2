@@ -11,6 +11,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -18,6 +19,8 @@ import { styled } from "@mui/material/styles";
 import Section from "./Section";
 import { Link } from "./../util/router";
 import { useAuth } from "./../util/auth";
+import { Button as BlueprintButton } from "@blueprintjs/core";
+import { useLocation } from "react-router-dom"; // Add this import
 
 const Logo = styled("img")(({ theme }) => ({
   height: 28,
@@ -34,6 +37,7 @@ const Spacer = styled("div")({
 
 function Navbar(props) {
   const auth = useAuth();
+  const location = useLocation(); // Add this line
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuState, setMenuState] = useState(null);
 
@@ -45,69 +49,59 @@ function Navbar(props) {
     setMenuState(null);
   };
 
+  const isEditorPage = location.pathname.startsWith("/design"); // Add this line
+
   return (
-    <Section bgColor={props.color} size="auto">
+    <Section sx={{ background: "#fff" }} size="auto">
       <AppBar position="static" color="transparent" elevation={0}>
-        <Container disableGutters={true}>
-          <Toolbar>
+        <Container
+          disableGutters={true}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Toolbar sx={{ flex: 1 }}>
             <Link to="/">
               <Logo src={props.logo} alt="Logo" />
             </Link>
-            <Spacer />
-            <Hidden smUp>
-              <IconButton onClick={() => setDrawerOpen(true)} color="inherit">
-                <MenuIcon />
-              </IconButton>
-            </Hidden>
-            <Hidden xsDown>
-              {!auth.user && (
-                <Button component={Link} to="/auth/signin" color="inherit">
-                  Sign in
-                </Button>
-              )}
-
-              {auth.user && (
-                <>
-                  <Button
-                    color="inherit"
-                    aria-label="Account"
-                    aria-controls="account-menu"
-                    aria-haspopup="true"
-                    onClick={(event) => handleOpenMenu(event, "account-menu")}
-                  >
-                    Account
-                    <ExpandMoreIcon />
-                  </Button>
-                  <Menu
-                    id="account-menu"
-                    open={menuState && menuState.id === "account-menu"}
-                    anchorEl={menuState && menuState.anchor}
-                    getContentAnchorEl={undefined}
-                    onClick={handleCloseMenu}
-                    onClose={handleCloseMenu}
-                    keepMounted
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center",
-                    }}
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                  >
-                    <MenuItem component={Link} to="/dashboard">
-                      Dashboard
-                    </MenuItem>
-                    <MenuItem component={Link} to="/settings/general">
-                      Settings
-                    </MenuItem>
-                    <Divider />
-                    <MenuItem onClick={() => auth.signout()}>Signout</MenuItem>
-                  </Menu>
-                </>
-              )}
-            </Hidden>
           </Toolbar>
+          {isEditorPage && ( // Modify this line
+            <Toolbar>
+              <Hidden smUp>
+                <IconButton onClick={() => setDrawerOpen(true)} color="inherit">
+                  <MenuIcon />
+                </IconButton>
+              </Hidden>
+              <Hidden xsDown>
+                <Box sx={{ mr: -4 }}>
+                  <BlueprintButton
+                    icon="floppy-disk"
+                    intent="none"
+                    onClick={() => alert("Design Saved")}
+                    style={{
+                      marginLeft: "10px",
+                      color: "#1C2127",
+                      border: "none",
+                      borderRadius: "3px",
+                      boxShadow: "none",
+                    }}
+                    className="custom-button"
+                  >
+                    Save
+                  </BlueprintButton>
+                  <BlueprintButton
+                    intent="primary"
+                    onClick={() => alert("Design Approved")}
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Finalize Design
+                  </BlueprintButton>
+                </Box>
+              </Hidden>
+            </Toolbar>
+          )}
         </Container>
       </AppBar>
       <Drawer
@@ -116,25 +110,31 @@ function Navbar(props) {
         onClose={() => setDrawerOpen(false)}
       >
         <DrawerList onClick={() => setDrawerOpen(false)}>
-          {!auth.user && (
-            <ListItem component={Link} to="/auth/signin" button>
-              <ListItemText>Sign in</ListItemText>
-            </ListItem>
-          )}
-
-          {auth.user && (
-            <>
-              <ListItem component={Link} to="/dashboard" button>
-                <ListItemText>Dashboard</ListItemText>
-              </ListItem>
-              <ListItem component={Link} to="/settings/general" button>
-                <ListItemText>Settings</ListItemText>
-              </ListItem>
-              <Divider />
-              <ListItem button onClick={() => auth.signout()}>
-                <ListItemText>Sign out</ListItemText>
-              </ListItem>
-            </>
+          {isEditorPage && ( // Modify this line
+            <Box sx={{ mr: -4 }}>
+              <BlueprintButton
+                icon="floppy-disk"
+                intent="none"
+                onClick={() => alert("Design Saved")}
+                style={{
+                  marginLeft: "10px",
+                  color: "#1C2127",
+                  border: "none",
+                  borderRadius: "3px",
+                  boxShadow: "none",
+                }}
+                className="custom-button"
+              >
+                Save
+              </BlueprintButton>
+              <BlueprintButton
+                intent="primary"
+                onClick={() => alert("Design Approved")}
+                style={{ marginLeft: "10px" }}
+              >
+                Finalize Design
+              </BlueprintButton>
+            </Box>
           )}
         </DrawerList>
       </Drawer>
