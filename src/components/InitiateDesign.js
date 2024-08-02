@@ -23,6 +23,8 @@ import {
 import { FaUser } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
 import { TbSwitch2 } from "react-icons/tb";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 const religions = [
   "Christianity",
@@ -79,21 +81,6 @@ const InformationForm = () => {
 
   return (
     <Box sx={{ mt: 2 }}>
-      <Box sx={{ mb: 2, display: "flex", justifyContent: "space-between" }}>
-        <Button
-          onClick={toggleSecondPerson}
-          startIcon={showSecondPerson ? <FaUser /> : <BsPeopleFill />}
-        >
-          {showSecondPerson ? "Hide Second Person" : "Show Second Person"}
-        </Button>
-        <Button
-          onClick={swapPersons}
-          disabled={!showSecondPerson}
-          startIcon={<TbSwitch2 />}
-        >
-          Swap People
-        </Button>
-      </Box>
       <FormControl fullWidth margin="normal">
         <Typography variant="h6" sx={{ mt: 2 }}>
           Religious Affiliations
@@ -119,7 +106,23 @@ const InformationForm = () => {
           ))}
         </Select>
       </FormControl>
-      <Typography variant="h6" sx={{ mt: 4, mb: 2 }}>
+      <Box sx={{ mt: 2, display: "flex", justifyContent: "flex-start" }}>
+        <Button
+          onClick={toggleSecondPerson}
+          startIcon={showSecondPerson ? <FaUser /> : <BsPeopleFill />}
+        >
+          {showSecondPerson ? "Hide Second Person" : "Add Second Person"}
+        </Button>
+        <Button
+          onClick={swapPersons}
+          disabled={!showSecondPerson}
+          startIcon={<TbSwitch2 />}
+        >
+          Swap People
+        </Button>
+      </Box>
+
+      <Typography variant="h6" sx={{ mt: 2, mb: 2 }}>
         Person 1
       </Typography>
       <Grid container spacing={2}>
@@ -311,11 +314,21 @@ const CreateDesignButton = () => {
         Create Design
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <Typography variant="h5" sx={{ textAlign: "center", mt: 2 }}>
-          {!saved
-            ? "Create a New Design"
-            : "Success! Here is a link to the designer."}
-        </Typography>
+        <DialogTitle>
+          <Typography variant="h5" sx={{ textAlign: "center", mt: 2 }}>
+            {!saved
+              ? "Create a New Design"
+              : "Success! Here is a link to the designer."}
+          </Typography>
+          <IconButton
+            onClick={handleClose}
+            color="primary"
+            sx={{ position: "absolute", right: 8, top: 8 }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+
         <DialogContent>
           {!saved ? (
             <InformationForm />
