@@ -26,6 +26,7 @@ import { TbSwitch2 } from "react-icons/tb";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { createDesign } from "../util/db";
+import { useAuth } from "./../util/auth.js";
 
 const religions = [
   "Christianity",
@@ -275,6 +276,7 @@ const InformationForm = ({
 };
 
 const CreateDesignButton = () => {
+  const auth = useAuth();
   const [open, setOpen] = useState(false);
   const [saved, setSaved] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -306,12 +308,16 @@ const CreateDesignButton = () => {
   };
 
   const handleSave = async () => {
+    console.log("AUTH ", auth);
     try {
-      const docId = await createDesign({
-        person1,
-        person2,
-        religionsSelected,
-      });
+      const docId = await createDesign(
+        {
+          person1,
+          person2,
+          religionsSelected,
+        },
+        auth.user.id
+      ); // Pass the user's UID as the owner
       setSaved(true);
       setDesignLink(`${window.location.origin}/design/${docId}`);
     } catch (error) {

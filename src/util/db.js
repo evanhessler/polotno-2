@@ -71,9 +71,12 @@ export function useItem(id) {
   );
 }
 
-export async function createDesign(data) {
+// Create a new design
+export async function createDesign(data, ownerId) {
+  const ownerRef = doc(db, "users", ownerId); // Reference to the user's document
   const docRef = await addDoc(collection(db, "initialDesignInformation"), {
     ...data,
+    owner: ownerRef,
     timestamp: serverTimestamp(),
   });
   return docRef.id;
