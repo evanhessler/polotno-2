@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  IconButton,
   Select,
   MenuItem,
   Chip,
@@ -18,6 +17,8 @@ import {
   Checkbox,
   Typography,
   Grid,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { FaUser } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
@@ -95,7 +96,7 @@ const InformationForm = () => {
       </Box>
       <FormControl fullWidth margin="normal">
         <Typography variant="h6" sx={{ mt: 2 }}>
-          Relgious Affiliations
+          Religious Affiliations
         </Typography>
         <Select
           multiple
@@ -279,13 +280,29 @@ const InformationForm = () => {
 
 const CreateDesignButton = () => {
   const [open, setOpen] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
+    setSaved(false);
   };
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSave = () => {
+    setSaved(true);
+  };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText("https://example.com/design-link");
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -294,19 +311,75 @@ const CreateDesignButton = () => {
         Create Design
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <DialogTitle>Create Design</DialogTitle>
+        <Typography variant="h5" sx={{ textAlign: "center", mt: 2 }}>
+          {!saved
+            ? "Create a New Design"
+            : "Success! Here is a link to the designer."}
+        </Typography>
         <DialogContent>
-          <InformationForm />
+          {!saved ? (
+            <InformationForm />
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mt: 4,
+              }}
+            >
+              <TextField
+                label="Design Link"
+                value="https://example.com/design-link"
+                fullWidth
+                disabled
+                InputProps={{
+                  readOnly: true,
+                }}
+                sx={{ mr: 2, width: "calc(100% - 300px)" }}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleCopyLink}
+                sx={{ mr: 1 }}
+              >
+                Copy Link
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() =>
+                  window.open("https://example.com/design-link", "_blank")
+                }
+              >
+                Go to Link
+              </Button>
+            </Box>
+          )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Save
-          </Button>
+          {!saved && (
+            <Button onClick={handleSave} color="primary">
+              Save
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Link Copied to Clipboard!
+        </Alert>
+      </Snackbar>
     </>
   );
 };
