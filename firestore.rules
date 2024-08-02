@@ -47,6 +47,12 @@ service cloud.firestore {
       allow delete: if false;
     }
     
+    match /initialDesignInformation/{designId} {
+      // Allow authenticated users to read and write
+      allow read, create: if request.auth != null;
+      allow update, delete: if false; // Disallow updates and deletes
+    }
+    
     match /items/{itemId} {
       // Validate write operations
       function validateWrite(affectedKeys){

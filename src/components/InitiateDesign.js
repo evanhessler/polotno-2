@@ -25,6 +25,7 @@ import { BsPeopleFill } from "react-icons/bs";
 import { TbSwitch2 } from "react-icons/tb";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { createDesign } from "../util/db";
 
 const religions = [
   "Christianity",
@@ -37,24 +38,16 @@ const religions = [
   "Other",
 ];
 
-const InformationForm = () => {
-  const [person1, setPerson1] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    dob: "",
-    dod: "",
-  });
-  const [person2, setPerson2] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    dob: "",
-    dod: "",
-  });
-  const [religionsSelected, setReligionsSelected] = useState([]);
-  const [showSecondPerson, setShowSecondPerson] = useState(false);
-
+const InformationForm = ({
+  person1,
+  setPerson1,
+  person2,
+  setPerson2,
+  religionsSelected,
+  setReligionsSelected,
+  showSecondPerson,
+  setShowSecondPerson,
+}) => {
   const handleInputChange = (person, setPerson, field, value) => {
     setPerson({
       ...person,
@@ -285,6 +278,23 @@ const CreateDesignButton = () => {
   const [open, setOpen] = useState(false);
   const [saved, setSaved] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [designLink, setDesignLink] = useState("");
+  const [person1, setPerson1] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    dob: "",
+    dod: "",
+  });
+  const [person2, setPerson2] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    dob: "",
+    dod: "",
+  });
+  const [religionsSelected, setReligionsSelected] = useState([]);
+  const [showSecondPerson, setShowSecondPerson] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -295,12 +305,22 @@ const CreateDesignButton = () => {
     setOpen(false);
   };
 
-  const handleSave = () => {
-    setSaved(true);
+  const handleSave = async () => {
+    try {
+      const docId = await createDesign({
+        person1,
+        person2,
+        religionsSelected,
+      });
+      setSaved(true);
+      setDesignLink(`${window.location.origin}/design/${docId}`);
+    } catch (error) {
+      console.error("Error saving document: ", error);
+    }
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText("https://example.com/design-link");
+    navigator.clipboard.writeText(designLink);
     setSnackbarOpen(true);
   };
 
@@ -331,7 +351,16 @@ const CreateDesignButton = () => {
 
         <DialogContent>
           {!saved ? (
-            <InformationForm />
+            <InformationForm
+              person1={person1}
+              setPerson1={setPerson1}
+              person2={person2}
+              setPerson2={setPerson2}
+              religionsSelected={religionsSelected}
+              setReligionsSelected={setReligionsSelected}
+              showSecondPerson={showSecondPerson}
+              setShowSecondPerson={setShowSecondPerson}
+            />
           ) : (
             <Box
               sx={{
@@ -343,7 +372,7 @@ const CreateDesignButton = () => {
             >
               <TextField
                 label="Design Link"
-                value="https://example.com/design-link"
+                value={designLink}
                 fullWidth
                 disabled
                 InputProps={{
@@ -362,9 +391,7 @@ const CreateDesignButton = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() =>
-                  window.open("https://example.com/design-link", "_blank")
-                }
+                onClick={() => window.open(designLink, "_blank")}
               >
                 Go to Link
               </Button>

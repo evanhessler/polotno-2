@@ -36,7 +36,7 @@ function App(props) {
 
                 <Route exact path="/about" component={AboutPage} />
 
-                <Route exact path="/design" component={DesignPage} />
+                <Route exact path="/design/:id" component={DesignPage} />
 
                 <Route exact path="/faq" component={FaqPage} />
 

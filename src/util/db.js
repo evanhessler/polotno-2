@@ -71,6 +71,14 @@ export function useItem(id) {
   );
 }
 
+export async function createDesign(data) {
+  const docRef = await addDoc(collection(db, "initialDesignInformation"), {
+    ...data,
+    timestamp: serverTimestamp(),
+  });
+  return docRef.id;
+}
+
 // Fetch item data once
 export function useItemOnce(id) {
   return useQuery(
